@@ -9,6 +9,8 @@ Maintaining order in our activities is something that we all must do for a bette
 
 The solution is already in your hands, stop thinking about that architecture, because you already have the solution.
 
+![hierarchy](https://user-images.githubusercontent.com/26027219/88470414-acb87080-cec1-11ea-9c52-5ece88b07821.png)
+
 ### **FIRST STAGE:** 🛠️
 #### structure in the hierarchy section.
 
