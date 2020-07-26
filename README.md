@@ -5,8 +5,9 @@ This plugin will help users to organize their objects in a hierarchy in a more p
 The functionalities that it would have would be several in the long term, among them, the change of color of the objects in hierarchy, adding icons to said objects, among other functions
 
 ### **GENERAL** 📋
+Maintaining order in our activities is something that we all must do for a better operation, and in our projects it must be a priority, since it helps us control everything in a much easier way, this plugin addresses those small problems of all Unity developers who do not know how to name their projects, which nomenclature would be the right one for that project ?, if it is a 2D platform project, what should I use ?, if it is a third person shooter, or even, if it is a VR project of the industrial sector.
 
-
+The solution is already in your hands, stop thinking about that architecture, because you already have the solution.
 
 ### **FIRST STAGE:** 🛠️
 #### structure in the hierarchy section.
