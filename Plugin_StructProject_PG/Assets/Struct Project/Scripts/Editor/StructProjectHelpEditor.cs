@@ -160,20 +160,30 @@ public class StructProjectHelpEditor : EditorWindow
     #region Instance Empty In Hierarchy
     void VerifyObjectInEditor()
     {
-        //newEmpty = EditorGUILayout.ObjectField(newEmpty, typeof(GameObject), true) as GameObject;
-        //newEmpty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Struct Project/Object/Empty.prefab");
-
         newEmpty = EditorGUILayout.ObjectField(newEmpty, typeof(GameObject), true) as GameObject;
-        newEmpty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Struct Project/Object/Empty.prefab");
+        newEmpty = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Struct Project/Object/EmptyContent.prefab");
  
     }
     void CreateObjectInHierarchy()
     {
-        //GameObject refEmpty = Instantiate(newEmpty);
-        //refEmpty.name = "SETTINGS";
-
         GameObject refEmpty = Instantiate(newEmpty);
-        refEmpty.name = "SETTINGS";
+
+        if(refEmpty != null)
+        {
+            foreach (var item in refEmpty.GetComponentsInChildren<Transform>())
+            {
+                item.SetParent(null);
+                refEmpty.name = "LIGHTING";
+                
+                //Agroud in parent
+                //if (item.GetComponents<Component>().Length > 1)
+                //{
+                //    refEmpty.name = "PARENT";
+                //    item.SetParent(null);
+                //}
+
+            }
+        }
 
     } 
     #endregion
