@@ -18,7 +18,7 @@ public class EditorWindowsView : EditorContent
     private Texture2D backgroundLeftTexture;
     private Rect backgroundLeftRect;
     private Color backgroundLeftColor = new Color(0.1764706f, 0.1764706f, 0.1764706f);
-
+    
     private Rect buttonBackgroundLeftRect;
     #endregion
     
