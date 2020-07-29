@@ -1,36 +1,34 @@
-﻿using Boo.Lang;
-using UnityEditor;
-using UnityEditor.Rendering;
+﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class EditorWindowsView : EditorContent
 {
     #region Head
-    GUISkin skinTitle;
-    Texture2D headBackgroundTexture;
-    Rect headBackgroundRect;
-    Color headBackgroundColor = new Color(0.1764706f, 0.1764706f, 0.1764706f);
+    private GUISkin skinTitle;
+    private Texture2D headBackgroundTexture;
+    private Rect headBackgroundRect;
+    private Color headBackgroundColor = new Color(0.1764706f, 0.1764706f, 0.1764706f);
     #endregion
 
     #region Panel Left
-    Texture2D backgrounLeftTexture;
-    Rect rectBackgroundLeft;
-    GUISkin skinTitleContentLeft;
-    Texture2D backgroundLeftTexture;
-    Rect backgroundLeftRect;
-    Color backgroundLeftColor = new Color(0.1764706f, 0.1764706f, 0.1764706f);
+    private Texture2D backgrounLeftTexture;
+    private Rect rectBackgroundLeft;
+    private GUISkin skinTitleContentLeft;
+    private Texture2D backgroundLeftTexture;
+    private Rect backgroundLeftRect;
+    private Color backgroundLeftColor = new Color(0.1764706f, 0.1764706f, 0.1764706f);
 
-    Rect buttonBackgroundLeftRect;
+    private Rect buttonBackgroundLeftRect;
     #endregion
     
     #region Object in Hierarchy
     //search object in hierarchy
-    GameObject[] objectsHierarchy;
-    GameObject refObjectHierarchyLocal;
+    private GameObject[] objectsHierarchy;
+    private GameObject refObjectHierarchyLocal;
 
     //Creare object in hierarchy
-    GameObject refEmpty;
+    private GameObject refEmpty;
     #endregion
 
     [MenuItem("Window/StructProject/Struct Project")]
@@ -41,7 +39,6 @@ public class EditorWindowsView : EditorContent
         window.maxSize = new Vector2(600, 500);
         window.Show();
     }
-
     private void OnEnable()
     {
         skinTitle = Resources.Load<GUISkin>("GuiSkin/TitleSkin");
@@ -50,9 +47,8 @@ public class EditorWindowsView : EditorContent
 
         StartTexture();
         StartTexturePanelLeft();
-        VerifyObjectInHierarchy();
     }
-    void OnGUI()
+    private void OnGUI()
     {
         VerifyObjectInEditor();
         DrawLayaoutHead();
@@ -61,17 +57,17 @@ public class EditorWindowsView : EditorContent
         DrawLayaoutBGLeft();
         DrawLeft();
 
-
+        VerifyObjectInHierarchy();
     }
 
-    #region HEAD
-    void StartTexture()
+    #region Head
+    private void StartTexture()
     {
         headBackgroundTexture = new Texture2D(1, 1);
         headBackgroundTexture.SetPixel(0, 0, headBackgroundColor);
         headBackgroundTexture.Apply();
     }
-    void DrawLayaoutHead()
+    private void DrawLayaoutHead()
     {
         headBackgroundRect.x = 0;
         headBackgroundRect.y = 0;
@@ -80,7 +76,7 @@ public class EditorWindowsView : EditorContent
 
         GUI.DrawTexture(headBackgroundRect, headBackgroundTexture);
     }
-    void DrawHead()
+    private void DrawHead()
     {
         GUILayout.BeginArea(headBackgroundRect);
         GUILayout.Label("STRUCT PROJECT", skinTitle.GetStyle("Header1"));
@@ -89,13 +85,13 @@ public class EditorWindowsView : EditorContent
     #endregion
 
     #region Content Left
-    void StartTexturePanelLeft()
+    private void StartTexturePanelLeft()
     {
         backgroundLeftTexture = new Texture2D(1, 1);
         backgroundLeftTexture.SetPixel(0, 0, backgroundLeftColor);
         backgroundLeftTexture.Apply();
     }
-    void DrawLayaoutBGLeft()
+    private void DrawLayaoutBGLeft()
     {
         //Background
         rectBackgroundLeft.x = 50;
@@ -137,7 +133,7 @@ public class EditorWindowsView : EditorContent
         }
         EditorGUILayout.EndHorizontal();
     }
-    void DrawLeft()
+    private void DrawLeft()
     {
         GUILayout.BeginArea(rectBackgroundLeft);
         GUILayout.Label("Panel Left", skinTitleContentLeft.GetStyle("Header2"));
@@ -146,6 +142,69 @@ public class EditorWindowsView : EditorContent
     #endregion
 
     #region Settings Empty In Hierarchy
+    internal void VerifyObjectInHierarchy()
+    {
+        objectsHierarchy = FindObjectsOfType<GameObject>();
+        foreach (var refObjectHierarchy in objectsHierarchy)
+        {
+            refObjectHierarchyLocal = refObjectHierarchy;
+
+            //if (refObjectHierarchyLocal.activeInHierarchy)
+            //{
+            //    //Debug.Log(refObjectHierarchyLocal);
+            //    //AddcomponentToNewEmpty();
+            //}
+        }
+    }
+    internal void AddcomponentToNewEmpty(Transform item)
+    {
+        foreach (var refObjectHierarchyLocal in objectsHierarchy)
+        {
+            if (refObjectHierarchyLocal.GetComponent<Camera>())
+            {
+                if (item.name == "CM CAMERA")
+                {
+                    refObjectHierarchyLocal.transform.parent = item;
+                }
+            }
+            else if (refObjectHierarchyLocal.GetComponent<Light>())
+            {
+                if (item.name == "LIGHTING")
+                {
+                    refObjectHierarchyLocal.transform.parent = item;
+                }
+            }
+            else if (refObjectHierarchyLocal.GetComponent<EventSystem>())
+            {
+                if (item.name == "SETTINGS")
+                {
+                    refObjectHierarchyLocal.transform.parent = item;
+                }
+            }
+            else if (refObjectHierarchyLocal.GetComponent<Canvas>())
+            {
+                if (item.name == "UI")
+                {
+                    refObjectHierarchyLocal.transform.parent = item;
+                }
+            }
+            else if (refObjectHierarchyLocal.GetComponent<Renderer>())
+            {
+                if (item.name == "ENVIROMENT")
+                {
+                    refObjectHierarchyLocal.transform.parent = item;
+                }
+            }
+            //else if (refObjectHierarchyLocal.GetComponent<Transform>())
+            //{
+            //    if (item.name == "OTHER'S")
+            //    {
+            //        refObjectHierarchyLocal.transform.parent = item;
+            //    }
+            //}
+        }
+        
+    }
     internal void CreateObjectInHierarchy()
     {
         refEmpty = Instantiate(newEmpty);
@@ -156,8 +215,9 @@ public class EditorWindowsView : EditorContent
             {
                 item.SetParent(null);
                 refEmpty.name = "LIGHTING";
+                //refItem = item;
 
-                //AddcomponentToNewEmpty();
+                AddcomponentToNewEmpty(item);
                 #region Agroud in parent
                 //if (item.GetComponents<Component>().Length > 1)
                 //{
@@ -170,30 +230,8 @@ public class EditorWindowsView : EditorContent
         }
 
     }
-    internal void VerifyObjectInHierarchy()
-    {
-        objectsHierarchy = FindObjectsOfType<GameObject>();
-        foreach (var refObjectHierarchy in objectsHierarchy)
-        {
-            refObjectHierarchyLocal = refObjectHierarchy;
 
-            if (refObjectHierarchyLocal.activeInHierarchy)
-            {
-                Debug.Log(refObjectHierarchyLocal);
 
-                AddcomponentToNewEmpty();
-            }
-        }
-    }
-    internal void AddcomponentToNewEmpty()
-    {
-        if (refObjectHierarchyLocal.GetComponent<EventSystem>())
-        {
-            Debug.Log(refObjectHierarchyLocal.name + " Event SYSTEM IN HIERARCHY");
-        }
-    }
     #endregion
-
-
 }
 
