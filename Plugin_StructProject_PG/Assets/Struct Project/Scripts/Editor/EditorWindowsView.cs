@@ -1,6 +1,9 @@
-﻿using UnityEditor;
+﻿using System.ComponentModel;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
+using UnityEngine.Video;
 
 public class EditorWindowsView : EditorContent
 {
@@ -31,7 +34,7 @@ public class EditorWindowsView : EditorContent
     private GameObject refEmpty;
     #endregion
 
-    [MenuItem("Window/StructProject/Struct Project")]
+    [MenuItem("Tools/StructProject/Struct Project")]
     static void OpenWindows()
     {
         EditorWindowsView window = GetWindow<EditorWindowsView>("Struct Project");
@@ -160,7 +163,7 @@ public class EditorWindowsView : EditorContent
     {
         foreach (var refObjectHierarchyLocal in objectsHierarchy)
         {
-            if (refObjectHierarchyLocal.GetComponent<Camera>())
+            if (refObjectHierarchyLocal.GetComponentInParent<Camera>())
             {
                 if (item.name == "CM CAMERA")
                 {
@@ -174,7 +177,7 @@ public class EditorWindowsView : EditorContent
                     refObjectHierarchyLocal.transform.parent = item;
                 }
             }
-            else if (refObjectHierarchyLocal.GetComponent<EventSystem>())
+            else if (refObjectHierarchyLocal.GetComponent<EventSystem>() || refObjectHierarchyLocal.GetComponent<Volume>())
             {
                 if (item.name == "SETTINGS")
                 {
@@ -195,13 +198,30 @@ public class EditorWindowsView : EditorContent
                     refObjectHierarchyLocal.transform.parent = item;
                 }
             }
-            //else if (refObjectHierarchyLocal.GetComponent<Transform>())
-            //{
-            //    if (item.name == "OTHER'S")
-            //    {
-            //        refObjectHierarchyLocal.transform.parent = item;
-            //    }
-            //}
+            else if (refObjectHierarchyLocal.GetComponent<AudioSource>() || refObjectHierarchyLocal.GetComponent<AudioReverbZone>())
+            {
+                if (item.name == "SOUND")
+                {
+                    refObjectHierarchyLocal.transform.parent = item;
+                }
+            }
+            else if (refObjectHierarchyLocal.GetComponent<ParticleSystem>() 
+                || refObjectHierarchyLocal.GetComponent<ParticleSystemForceField>()
+                || refObjectHierarchyLocal.GetComponent<TrailRenderer>() 
+                || refObjectHierarchyLocal.GetComponent<LineRenderer>())
+            {
+                if (item.name == "EFFECTS")
+                {
+                    refObjectHierarchyLocal.transform.parent = item;
+                }
+            }
+            else if (refObjectHierarchyLocal.GetComponent<VideoPlayer>())
+            {
+                if (item.name == "OTHER'S")
+                {
+                    refObjectHierarchyLocal.transform.parent = item;
+                }
+            }
         }
         
     }

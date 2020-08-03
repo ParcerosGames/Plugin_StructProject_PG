@@ -11,7 +11,7 @@ public class EditorContent : EditorWindow
     internal GameObject newEmpty;
     internal Color colorEmpty;
 
-    [MenuItem("Window/StructProject/Preferences")]
+    [MenuItem("Tools/StructProject/Preferences")]
     static void OpenWindows()
     {
         EditorContent window = GetWindow<EditorContent>("Preferences");
