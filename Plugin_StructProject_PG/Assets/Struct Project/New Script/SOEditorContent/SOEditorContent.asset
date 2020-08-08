@@ -13,27 +13,42 @@ MonoBehaviour:
   m_Name: SOEditorContent
   m_EditorClassIdentifier: 
   modeHierarchies:
-  - newColor: {r: 0, g: 0, b: 0, a: 0}
+  - nameEmpty: 
+    newColor: {r: 0, g: 0, b: 0, a: 0}
     emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
-  - newColor: {r: 0, g: 0, b: 0, a: 0}
+  - nameEmpty: 
+    newColor: {r: 0, g: 0, b: 0, a: 0}
     emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
-  - newColor: {r: 0, g: 0, b: 0, a: 0}
+  - nameEmpty: 
+    newColor: {r: 0, g: 0, b: 0, a: 0}
     emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
-  - newColor: {r: 0, g: 0, b: 0, a: 0}
+  - nameEmpty: 
+    newColor: {r: 0, g: 0, b: 0, a: 0}
     emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
-  - newColor: {r: 0, g: 0, b: 0, a: 0}
+  - nameEmpty: 
+    newColor: {r: 0, g: 0, b: 0, a: 0}
     emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
-  - newColor: {r: 0, g: 0, b: 0, a: 0}
+  - nameEmpty: 
+    newColor: {r: 0, g: 0, b: 0, a: 0}
     emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
-  - newColor: {r: 0, g: 0, b: 0, a: 0}
+  - nameEmpty: 
+    newColor: {r: 0, g: 0, b: 0, a: 0}
     emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
   eventU:
-    m_PersistentCalls:
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
       m_Calls: []

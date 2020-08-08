@@ -24,68 +24,71 @@ public class EditorStructProject : Editor
     //Creare object in hierarchy
     private GameObject refEmpty;
 
+    #region Head
+    private GUISkin skinTitle;
+    private GUISkin skinInfo;
+    private Texture2D headBackgroundTexture;
+    private Rect headBackgroundRect;
+    private Color headBackgroundColor = new Color(0.1764706f, 0.1764706f, 0.1764706f);
+    #endregion
+
+    #region ContentParameters
+    //private GUISkin skinTitle;
+    private Texture2D headBackgroundTextureContentParameters;
+    private Rect headBackgroundRectContentParameters;
+    private Color headBackgroundColorContentParameters = new Color(0.1764706f, 0.1764706f, 0.1764706f);
+    #endregion
+
     private void OnEnable()
     {
+        skinTitle = Resources.Load<GUISkin>("GuiSkin/TitleSkin");
+        skinInfo = Resources.Load<GUISkin>("GuiSkin/infoSkin");
         propertySOEditorContent = serializedObject.FindProperty("modeHierarchies");
         propertySOEditorContentEvent = serializedObject.FindProperty("eventU");
+
     }
 
     public override void OnInspectorGUI()
     {
-        serializedObject.Update();
-        EditorGUILayout.PropertyField(property: propertySOEditorContent, includeChildren:true);
-        EditorGUILayout.PropertyField(property: propertySOEditorContentEvent, includeChildren: true);
-        serializedObject.ApplyModifiedProperties();
-
         VerifyObjectInHierarchy();
-        ButtonApply();
-    }
 
-    public void ButtonApply()
-    {
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("Button Apply");
-
-        if(GUILayout.Button("Apply"))
-        {
-            //Read element in modeHierarchy (Array)
-            //foreach (var item in serializedObject.FindProperty("modeHierarchies"))
-            //{
-            //    UnityEngine.Debug.Log(item); 
-            //}
-
-            foreach (var item in sOEditorContent.modeHierarchies)
-            {
-                GameObject refInstance = Instantiate(item.emptyInstance);
-
-                if (refInstance.GetInstanceID() == refInstance.GetInstanceID())
-                {
-                    UnityEngine.Debug.Log("The object some equals");
-
-                    refInstance.name = nameNewEmpty[0];
-                    //AQUI DEBO ORGANIZAR PARA QUE EL NOMBRE NO SE REPITA CUANDO SE INSTANCIE
-                    if(refInstance.name == refInstance.name)
-                    {
-                        refInstance.name = nameNewEmpty[Random.Range(0, nameNewEmpty.Length)];
-                    }
-                }
-
-                //if(item.emptyInstance.name.Equals("New Clone"))
-                //{
-                //    item.emptyInstance.name = "Hola";
-                //}
-                //else if (item.emptyInstance.name.Equals("New Clone"))
-                //{
-                //    item.emptyInstance.name = "Raro";
-                //}
-            }
-            //CreateObjectInHierarchy();
-        }
-
+        GUILayout.BeginHorizontal("Box");
+        GUILayout.Label("STRUCT PROJECT", skinTitle.GetStyle("Header1"));
         GUILayout.EndHorizontal();
+
+        GUILayout.Space(5);
+
+        GUILayout.BeginHorizontal("Box");
+        GUILayout.TextArea("This plugin will help users to organize their objects in a hierarchy in a more professional way, " +
+            "it will also be adapted for project panel files." +
+            "The functionalities that it would have would be several in the long term, among them, " +
+            "the change of color of the objects in hierarchy, adding icons to said objects, among other functions. " +
+            "Maintaining order in our activities is something that we all must do for a better operation, and in our projects it must be a priority, " +
+            "since it helps us control everything in a much easier way, this plugin addresses those small problems of all Unity developers " +
+            "who do not know how to name their projects, which nomenclature would be the right one for that project ?, if it is a 2D platform project, " +
+            "what should I use ?, if it is a third person shooter, or even, if it is a VR project of the industrial sector.The solution is already in your hands, " +
+            "stop thinking about that architecture, because you already have the solution.", skinInfo.GetStyle("Header2"));
+        GUILayout.EndHorizontal();
+
+        GUILayout.Space(5);
+
+        GUILayout.BeginHorizontal("Box");
+        serializedObject.Update();
+        EditorGUILayout.PropertyField(property: propertySOEditorContent, includeChildren: true);
+        //EditorGUILayout.PropertyField(property: propertySOEditorContentEvent, includeChildren: true);
+        serializedObject.ApplyModifiedProperties();
+        
+        GUILayout.EndHorizontal();
+
+        Apply();
     }
 
     #region Settings Empty In Hierarchy
+    internal void Apply()
+    {
+        GUILayout.Button("Apply");
+    }
+
     internal void VerifyObjectInHierarchy()
     {
         objectsHierarchy = FindObjectsOfType<GameObject>();
