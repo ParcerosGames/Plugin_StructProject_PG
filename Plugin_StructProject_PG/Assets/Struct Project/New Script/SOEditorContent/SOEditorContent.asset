@@ -13,22 +13,60 @@ MonoBehaviour:
   m_Name: SOEditorContent
   m_EditorClassIdentifier: 
   modeHierarchies:
-  - nameEmpty: enviroment
-    newColor: {r: 0, g: 0.6886792, b: 0.18537362, a: 1}
-    emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
+  - newNameInstance: ENVIROMENT
+    newColor: {r: 0.9056604, g: 0, b: 0.45752788, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
-  - nameEmpty: settings
-    newColor: {r: 0.7075472, g: 0, b: 0.19306609, a: 1}
-    emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
+  - newNameInstance: SETTINGS
+    newColor: {r: 0, g: 0.6415094, b: 0.12573896, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
-  eventU:
-  - m_PersistentCalls:
-      m_Calls: []
-  - m_PersistentCalls:
-      m_Calls: []
-  - m_PersistentCalls:
-      m_Calls: []
-  - m_PersistentCalls:
-      m_Calls: []
-  - m_PersistentCalls:
-      m_Calls: []
+  - newNameInstance: CM CAMERA
+    newColor: {r: 0, g: 0.54896283, b: 0.8018868, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
+      type: 3}
+  - newNameInstance: EFFECT'S
+    newColor: {r: 0.7830189, g: 0.16350491, b: 0, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
+      type: 3}
+  - newNameInstance: SOUND
+    newColor: {r: 0.6235337, g: 0, b: 1, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
+      type: 3}
+  - newNameInstance: UI
+    newColor: {r: 0.9433962, g: 0.7361874, b: 0, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
+      type: 3}
+  - newNameInstance: SCRIPTING
+    newColor: {r: 0, g: 0.80259144, b: 0.8584906, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
+      type: 3}
+  myGradient:
+    serializedVersion: 2
+    key0: {r: 0, g: 0.80259144, b: 0.8584906, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 0}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 32768
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 13107
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2

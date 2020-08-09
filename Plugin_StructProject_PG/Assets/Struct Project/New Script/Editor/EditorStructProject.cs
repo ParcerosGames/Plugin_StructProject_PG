@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using TMPro;
 using UnityEditor;
 using UnityEditor.Experimental.TerrainAPI;
+using UnityEditor.Graphs;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
@@ -12,10 +14,10 @@ using UnityEngine.Video;
 public class EditorStructProject : Editor
 {
     public SOEditorContent sOEditorContent;
-    public ModeHierarchy modeHierarchy;
+    //public ModeHierarchy modeHierarchy;
 
     private SerializedProperty propertySOEditorContent;
-    //private SerializedProperty propertySOEditorContentEvent;
+    private SerializedProperty propertySOEditorContentGradient;
 
     //search object in hierarchy
     private GameObject[] objectsHierarchy;
@@ -28,21 +30,19 @@ public class EditorStructProject : Editor
     private GUISkin skinTitle;
     private GUISkin skinInfo;
 
-
     private void OnEnable()
     {
         skinTitle = Resources.Load<GUISkin>("GuiSkin/TitleSkin");
         skinInfo = Resources.Load<GUISkin>("GuiSkin/infoSkin");
         propertySOEditorContent = serializedObject.FindProperty("modeHierarchies");
-        //propertySOEditorContentEvent = serializedObject.FindProperty("eventU");
+        propertySOEditorContentGradient = serializedObject.FindProperty("myGradient");
 
-        modeHierarchy = new ModeHierarchy();
-
+        //modeHierarchy = new ModeHierarchy();
     }
 
     public override void OnInspectorGUI()
     {
-        VerifyObjectInHierarchy();
+        //VerifyObjectInHierarchy();
 
         GUILayout.BeginHorizontal("Box");
         GUILayout.Label("STRUCT PROJECT", skinTitle.GetStyle("Header1"));
@@ -54,33 +54,43 @@ public class EditorStructProject : Editor
         GUILayout.TextArea("This plugin will help users to organize their objects in a hierarchy in a more professional way, " +
             "it will also be adapted for project panel files." +
             "The functionalities that it would have would be several in the long term, among them, " +
-            "the change of color of the objects in hierarchy, adding icons to said objects, among other functions. " +
+            "the change of color of the objects in hierarchy, adding icons to said objects, among other functions. " + 
+            "\n" + "\n" + 
             "Maintaining order in our activities is something that we all must do for a better operation, and in our projects it must be a priority, " +
-            "since it helps us control everything in a much easier way, this plugin addresses those small problems of all Unity developers " +
+            "since it helps us control everything in a much easier way, this plugin addresses those small problems of all <color=#00C1DD>Unity developers</color> " +
             "who do not know how to name their projects, which nomenclature would be the right one for that project ?, if it is a 2D platform project, " +
             "what should I use ?, if it is a third person shooter, or even, if it is a VR project of the industrial sector.The solution is already in your hands, " +
             "stop thinking about that architecture, because you already have the solution.", skinInfo.GetStyle("Header2"));
         GUILayout.EndHorizontal();
 
         GUILayout.Space(5);
-
         GUILayout.BeginHorizontal("Box");
         serializedObject.Update();
         EditorGUILayout.PropertyField(property: propertySOEditorContent, includeChildren: true);
-        //EditorGUILayout.PropertyField(property: propertySOEditorContentEvent, includeChildren: true);
         serializedObject.ApplyModifiedProperties();
-
         GUILayout.EndHorizontal();
 
+        GUILayout.Space(5);
+        GUILayout.BeginHorizontal("Box");
+        EditorGUILayout.PropertyField(property: propertySOEditorContentGradient, includeChildren: true);
+        GUILayout.EndHorizontal();
+
+        GUILayout.Space(15);
+        GUILayout.BeginHorizontal("Box");
         ButtonApply();
+        GUILayout.EndHorizontal();
     }
 
     #region Settings Empty In Hierarchy
     internal void ButtonApply()
     {
-        if(GUILayout.Button("Apply"))
+        //GUI.color = new Color(0, 0.6698113f, 0.09296767f);
+        if (GUILayout.Button("Apply", skinTitle.GetStyle("Header1")))
         {
-            CreateObjectInHierarchy();
+            if (!refEmpty)
+            {
+                CreateObjectInHierarchy();
+            }
         }
     }
     internal void VerifyObjectInHierarchy()
@@ -92,37 +102,18 @@ public class EditorStructProject : Editor
 
             if (refObjectHierarchyLocal.activeInHierarchy)
             {
-                UnityEngine.Debug.Log(refObjectHierarchyLocal);
+                //UnityEngine.Debug.Log(refObjectHierarchyLocal);
                 //AddcomponentToNewEmpty();
             }
         }
     }
     internal void CreateObjectInHierarchy()
     {
-        //refEmpty = Instantiate(propertySOEditorContent.FindPropertyRelative("emptyInstance")) as GameObject;
-        //refEmpty = Instantiate(serializedObject.targetObject)as GameObject;
-        refEmpty = Instantiate(modeHierarchy.emptyInstance);
-
-        //if (refEmpty != null)
-        //{
-        //    foreach (var item in refEmpty.GetComponentsInChildren<Transform>())
-        //    {
-        //        item.SetParent(null);
-        //        refEmpty.name = "LIGHTING";
-        //        //refItem = item;
-
-        //        AddcomponentToNewEmpty(item);
-        //        #region Agroud in parent
-        //        //if (item.GetComponents<Component>().Length > 1)
-        //        //{
-        //        //    crefEmpty.name = "PARENT";
-        //        //    item.SetParent(null);
-        //        //} 
-        //        #endregion
-
-        //    }
-        //}
-
+        for (int i = 0; i < sOEditorContent.modeHierarchies.Count; i++)
+        {
+            refEmpty = Instantiate(sOEditorContent.modeHierarchies[i].instanceHierarchy);
+            refEmpty.name = sOEditorContent.modeHierarchies[i].newNameInstance;
+        }
     }
     internal void AddcomponentToNewEmpty(Transform item)
     {
@@ -192,8 +183,5 @@ public class EditorStructProject : Editor
         }
 
     }
- 
-
-
     #endregion
 }
