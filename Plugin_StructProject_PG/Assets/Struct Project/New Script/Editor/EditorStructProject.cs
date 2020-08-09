@@ -12,10 +12,10 @@ using UnityEngine.Video;
 public class EditorStructProject : Editor
 {
     public SOEditorContent sOEditorContent;
+    public ModeHierarchy modeHierarchy;
 
     private SerializedProperty propertySOEditorContent;
-    private SerializedProperty propertySOEditorContentEvent;
-    private string[] nameNewEmpty = new string[] {"LIGHT","CM VIRTUAL","ENVIROMENT", "SETTINGS","UI","SOUND'S","EFFECT'S"};
+    //private SerializedProperty propertySOEditorContentEvent;
 
     //search object in hierarchy
     private GameObject[] objectsHierarchy;
@@ -24,27 +24,19 @@ public class EditorStructProject : Editor
     //Creare object in hierarchy
     private GameObject refEmpty;
 
-    #region Head
+    //Font
     private GUISkin skinTitle;
     private GUISkin skinInfo;
-    private Texture2D headBackgroundTexture;
-    private Rect headBackgroundRect;
-    private Color headBackgroundColor = new Color(0.1764706f, 0.1764706f, 0.1764706f);
-    #endregion
 
-    #region ContentParameters
-    //private GUISkin skinTitle;
-    private Texture2D headBackgroundTextureContentParameters;
-    private Rect headBackgroundRectContentParameters;
-    private Color headBackgroundColorContentParameters = new Color(0.1764706f, 0.1764706f, 0.1764706f);
-    #endregion
 
     private void OnEnable()
     {
         skinTitle = Resources.Load<GUISkin>("GuiSkin/TitleSkin");
         skinInfo = Resources.Load<GUISkin>("GuiSkin/infoSkin");
         propertySOEditorContent = serializedObject.FindProperty("modeHierarchies");
-        propertySOEditorContentEvent = serializedObject.FindProperty("eventU");
+        //propertySOEditorContentEvent = serializedObject.FindProperty("eventU");
+
+        modeHierarchy = new ModeHierarchy();
 
     }
 
@@ -77,18 +69,20 @@ public class EditorStructProject : Editor
         EditorGUILayout.PropertyField(property: propertySOEditorContent, includeChildren: true);
         //EditorGUILayout.PropertyField(property: propertySOEditorContentEvent, includeChildren: true);
         serializedObject.ApplyModifiedProperties();
-        
+
         GUILayout.EndHorizontal();
 
-        Apply();
+        ButtonApply();
     }
 
     #region Settings Empty In Hierarchy
-    internal void Apply()
+    internal void ButtonApply()
     {
-        GUILayout.Button("Apply");
+        if(GUILayout.Button("Apply"))
+        {
+            CreateObjectInHierarchy();
+        }
     }
-
     internal void VerifyObjectInHierarchy()
     {
         objectsHierarchy = FindObjectsOfType<GameObject>();
@@ -96,17 +90,46 @@ public class EditorStructProject : Editor
         {
             refObjectHierarchyLocal = refObjectHierarchy;
 
-            //if (refObjectHierarchyLocal.activeInHierarchy)
-            //{
-            //    //Debug.Log(refObjectHierarchyLocal);
-            //    //AddcomponentToNewEmpty();
-            //}
+            if (refObjectHierarchyLocal.activeInHierarchy)
+            {
+                UnityEngine.Debug.Log(refObjectHierarchyLocal);
+                //AddcomponentToNewEmpty();
+            }
         }
+    }
+    internal void CreateObjectInHierarchy()
+    {
+        //refEmpty = Instantiate(propertySOEditorContent.FindPropertyRelative("emptyInstance")) as GameObject;
+        //refEmpty = Instantiate(serializedObject.targetObject)as GameObject;
+        refEmpty = Instantiate(modeHierarchy.emptyInstance);
+
+        //if (refEmpty != null)
+        //{
+        //    foreach (var item in refEmpty.GetComponentsInChildren<Transform>())
+        //    {
+        //        item.SetParent(null);
+        //        refEmpty.name = "LIGHTING";
+        //        //refItem = item;
+
+        //        AddcomponentToNewEmpty(item);
+        //        #region Agroud in parent
+        //        //if (item.GetComponents<Component>().Length > 1)
+        //        //{
+        //        //    crefEmpty.name = "PARENT";
+        //        //    item.SetParent(null);
+        //        //} 
+        //        #endregion
+
+        //    }
+        //}
+
     }
     internal void AddcomponentToNewEmpty(Transform item)
     {
         foreach (var refObjectHierarchyLocal in objectsHierarchy)
         {
+            //item.name = propertySOEditorContent.name;
+
             if (refObjectHierarchyLocal.GetComponentInParent<Camera>())
             {
                 if (item.name == "CM CAMERA")
@@ -169,31 +192,7 @@ public class EditorStructProject : Editor
         }
 
     }
-    internal void CreateObjectInHierarchy()
-    {
-        //refEmpty = Instantiate(propertySOEditorContent.);
-
-        if (refEmpty != null)
-        {
-            foreach (var item in refEmpty.GetComponentsInChildren<Transform>())
-            {
-                item.SetParent(null);
-                refEmpty.name = "LIGHTING";
-                //refItem = item;
-
-                AddcomponentToNewEmpty(item);
-                #region Agroud in parent
-                //if (item.GetComponents<Component>().Length > 1)
-                //{
-                //    crefEmpty.name = "PARENT";
-                //    item.SetParent(null);
-                //} 
-                #endregion
-
-            }
-        }
-
-    }
+ 
 
 
     #endregion

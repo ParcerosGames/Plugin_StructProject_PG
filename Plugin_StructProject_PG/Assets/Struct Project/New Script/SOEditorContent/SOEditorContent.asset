@@ -13,32 +13,12 @@ MonoBehaviour:
   m_Name: SOEditorContent
   m_EditorClassIdentifier: 
   modeHierarchies:
-  - nameEmpty: 
-    newColor: {r: 0, g: 0, b: 0, a: 0}
+  - nameEmpty: enviroment
+    newColor: {r: 0, g: 0.6886792, b: 0.18537362, a: 1}
     emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
-  - nameEmpty: 
-    newColor: {r: 0, g: 0, b: 0, a: 0}
-    emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
-      type: 3}
-  - nameEmpty: 
-    newColor: {r: 0, g: 0, b: 0, a: 0}
-    emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
-      type: 3}
-  - nameEmpty: 
-    newColor: {r: 0, g: 0, b: 0, a: 0}
-    emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
-      type: 3}
-  - nameEmpty: 
-    newColor: {r: 0, g: 0, b: 0, a: 0}
-    emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
-      type: 3}
-  - nameEmpty: 
-    newColor: {r: 0, g: 0, b: 0, a: 0}
-    emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
-      type: 3}
-  - nameEmpty: 
-    newColor: {r: 0, g: 0, b: 0, a: 0}
+  - nameEmpty: settings
+    newColor: {r: 0.7075472, g: 0, b: 0.19306609, a: 1}
     emptyInstance: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
   eventU:
