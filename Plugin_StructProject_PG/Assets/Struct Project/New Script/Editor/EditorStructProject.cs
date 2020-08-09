@@ -18,6 +18,7 @@ public class EditorStructProject : Editor
 
     private SerializedProperty propertySOEditorContent;
     private SerializedProperty propertySOEditorContentGradient;
+    private SerializedProperty propertySOEditorExcludeObject;
 
     //search object in hierarchy
     private GameObject[] objectsHierarchy;
@@ -36,13 +37,14 @@ public class EditorStructProject : Editor
         skinInfo = Resources.Load<GUISkin>("GuiSkin/infoSkin");
         propertySOEditorContent = serializedObject.FindProperty("modeHierarchies");
         propertySOEditorContentGradient = serializedObject.FindProperty("myGradient");
+        propertySOEditorExcludeObject = serializedObject.FindProperty("excludeObject");
 
         //modeHierarchy = new ModeHierarchy();
     }
 
     public override void OnInspectorGUI()
     {
-        //VerifyObjectInHierarchy();
+        VerifyObjectInHierarchy();
 
         GUILayout.BeginHorizontal("Box");
         GUILayout.Label("STRUCT PROJECT", skinTitle.GetStyle("Header1"));
@@ -68,6 +70,11 @@ public class EditorStructProject : Editor
         serializedObject.Update();
         EditorGUILayout.PropertyField(property: propertySOEditorContent, includeChildren: true);
         serializedObject.ApplyModifiedProperties();
+        GUILayout.EndHorizontal();
+
+        GUILayout.Space(5);
+        GUILayout.BeginHorizontal("Box");
+        EditorGUILayout.PropertyField(property: propertySOEditorExcludeObject, includeChildren: true);
         GUILayout.EndHorizontal();
 
         GUILayout.Space(5);
@@ -102,8 +109,7 @@ public class EditorStructProject : Editor
 
             if (refObjectHierarchyLocal.activeInHierarchy)
             {
-                //UnityEngine.Debug.Log(refObjectHierarchyLocal);
-                //AddcomponentToNewEmpty();
+                AddcomponentToNewEmpty(refObjectHierarchyLocal.transform);
             }
         }
     }
@@ -119,8 +125,6 @@ public class EditorStructProject : Editor
     {
         foreach (var refObjectHierarchyLocal in objectsHierarchy)
         {
-            //item.name = propertySOEditorContent.name;
-
             if (refObjectHierarchyLocal.GetComponentInParent<Camera>())
             {
                 if (item.name == "CM CAMERA")
@@ -135,7 +139,8 @@ public class EditorStructProject : Editor
                     refObjectHierarchyLocal.transform.parent = item;
                 }
             }
-            else if (refObjectHierarchyLocal.GetComponent<EventSystem>() || refObjectHierarchyLocal.GetComponent<Volume>())
+            else if (refObjectHierarchyLocal.GetComponent<EventSystem>() || refObjectHierarchyLocal.GetComponent<Volume>()
+                || refObjectHierarchyLocal.GetComponent<VideoPlayer>())
             {
                 if (item.name == "SETTINGS")
                 {
@@ -145,20 +150,6 @@ public class EditorStructProject : Editor
             else if (refObjectHierarchyLocal.GetComponent<Canvas>())
             {
                 if (item.name == "UI")
-                {
-                    refObjectHierarchyLocal.transform.parent = item;
-                }
-            }
-            else if (refObjectHierarchyLocal.GetComponent<Renderer>())
-            {
-                if (item.name == "ENVIROMENT")
-                {
-                    refObjectHierarchyLocal.transform.parent = item;
-                }
-            }
-            else if (refObjectHierarchyLocal.GetComponent<AudioSource>() || refObjectHierarchyLocal.GetComponent<AudioReverbZone>())
-            {
-                if (item.name == "SOUND")
                 {
                     refObjectHierarchyLocal.transform.parent = item;
                 }
@@ -173,13 +164,21 @@ public class EditorStructProject : Editor
                     refObjectHierarchyLocal.transform.parent = item;
                 }
             }
-            else if (refObjectHierarchyLocal.GetComponent<VideoPlayer>())
+            else if (refObjectHierarchyLocal.GetComponent<AudioSource>() || refObjectHierarchyLocal.GetComponent<AudioReverbZone>())
             {
-                if (item.name == "OTHER'S")
+                if (item.name == "SOUND")
                 {
                     refObjectHierarchyLocal.transform.parent = item;
                 }
             }
+            else if (refObjectHierarchyLocal.GetComponent<Renderer>())
+            {
+                if (item.name == "ENVIROMENT")
+                {
+                    refObjectHierarchyLocal.transform.parent = item;
+                }
+            }
+
         }
 
     }

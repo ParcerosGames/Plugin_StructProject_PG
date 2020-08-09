@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class SOEditorContent : ScriptableObject
 {
     public List<ModeHierarchy> modeHierarchies; 
+    public GameObject[] excludeObject;
     public Gradient myGradient;
 
     [System.Serializable]

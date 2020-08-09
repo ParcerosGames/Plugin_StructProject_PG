@@ -25,7 +25,7 @@ MonoBehaviour:
     newColor: {r: 0, g: 0.54896283, b: 0.8018868, a: 1}
     instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
-  - newNameInstance: EFFECT'S
+  - newNameInstance: EFFECTS
     newColor: {r: 0.7830189, g: 0.16350491, b: 0, a: 1}
     instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
@@ -39,6 +39,10 @@ MonoBehaviour:
       type: 3}
   - newNameInstance: SCRIPTING
     newColor: {r: 0, g: 0.80259144, b: 0.8584906, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
+      type: 3}
+  - newNameInstance: LIGHTING
+    newColor: {r: 0.7264151, g: 0, b: 0.084094204, a: 1}
     instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd,
       type: 3}
   myGradient:
