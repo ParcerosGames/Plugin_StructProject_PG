@@ -38,13 +38,11 @@ public class EditorStructProject : Editor
         propertySOEditorContent = serializedObject.FindProperty("modeHierarchies");
         propertySOEditorContentGradient = serializedObject.FindProperty("myGradient");
         propertySOEditorExcludeObject = serializedObject.FindProperty("excludeObject");
-
-        //modeHierarchy = new ModeHierarchy();
     }
 
     public override void OnInspectorGUI()
     {
-        VerifyObjectInHierarchy();
+        //VerifyObjectInHierarchy();
 
         GUILayout.BeginHorizontal("Box");
         GUILayout.Label("STRUCT PROJECT", skinTitle.GetStyle("Header1"));
@@ -98,6 +96,7 @@ public class EditorStructProject : Editor
             {
                 CreateObjectInHierarchy();
             }
+
         }
     }
     internal void VerifyObjectInHierarchy()
