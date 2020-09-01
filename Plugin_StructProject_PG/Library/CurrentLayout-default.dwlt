@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: Project
   m_RootView: {fileID: 3}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -70,9 +70,15 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1920
     height: 997
   m_MinSize: {x: 875, y: 300}
+=======
+    width: 1366
+    height: 693
+  m_MinSize: {x: 875, y: 321}
+>>>>>>> parent of 4c1b50b... Revert "Update Struct Project"
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &4
 MonoBehaviour:
@@ -143,7 +149,11 @@ MonoBehaviour:
   m_MinSize: {x: 811, y: 271}
   m_MaxSize: {x: 22006, y: 10021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 130
+=======
+  controlID: 66
+>>>>>>> parent of 4c1b50b... Revert "Update Struct Project"
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -187,11 +197,19 @@ MonoBehaviour:
     serializedVersion: 2
     x: 231
     y: 0
+<<<<<<< HEAD
     width: 592
     height: 947
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 13}
+=======
+    width: 515
+    height: 643
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 15}
+>>>>>>> parent of 4c1b50b... Revert "Update Struct Project"
   m_Panes:
   - {fileID: 13}
   - {fileID: 14}
@@ -258,7 +276,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 64390000
       m_LastClickedID: 0
-      m_ExpandedIDs: 6afbffff
+      m_ExpandedIDs: 6cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -412,8 +430,12 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 1
+<<<<<<< HEAD
     m_Folders:
     - Assets/Struct Project/New Script/SOEditorContent
+=======
+    m_Folders: []
+>>>>>>> parent of 4c1b50b... Revert "Update Struct Project"
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders: []
@@ -425,7 +447,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 24480000
     m_LastClickedID: 18468
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000903a0000c43c0000c63c0000c83c0000ca3c0000cc3c0000ce3c0000d03c0000d23c0000d43c0000d63c0000d83c0000da3c0000dc3c0000de3c0000
+=======
+    m_ExpandedIDs: 00000000903a0000843b0000863b0000883b00008a3b00008c3b00008e3b0000903b0000923b0000943b0000963b0000983b00009a3b00009c3b00009e3b0000
+>>>>>>> parent of 4c1b50b... Revert "Update Struct Project"
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -453,7 +479,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: ffffffff00000000903a0000c43c0000c63c0000c83c0000ca3c0000cc3c0000ce3c0000d03c0000d23c0000d43c0000d63c0000d83c0000da3c0000dc3c0000de3c0000
+=======
+    m_ExpandedIDs: ffffffff00000000903a0000843b0000863b0000883b00008a3b00008c3b00008e3b0000903b0000923b0000943b0000963b00009a3b0000e23c0000e83c0000f63c0000f83c00002c3d0000363d0000
+>>>>>>> parent of 4c1b50b... Revert "Update Struct Project"
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -709,9 +739,13 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 64390000
+=======
+      m_SelectedIDs: 343d0000
+>>>>>>> parent of 4c1b50b... Revert "Update Struct Project"
       m_LastClickedID: 0
-      m_ExpandedIDs: 6afbffff
+      m_ExpandedIDs: 6cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

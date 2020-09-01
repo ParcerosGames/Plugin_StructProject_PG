@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Base path: 'C:/Program Files/Unity Launcher/2019.4.3f1/Editor/Data', plugins path 'C:/Program Files/Unity Launcher/2019.4.3f1/Editor/Data/PlaybackEngines'
+=======
+Base path: 'C:/Program Files/Unity/2018.1.0f2/2019.4.8f1/Editor/Data', plugins path 'C:/Program Files/Unity/2018.1.0f2/2019.4.8f1/Editor/Data/PlaybackEngines'
+>>>>>>> parent of 4c1b50b... Revert "Update Struct Project"
 Cmd: initializeCompiler
 
 Quitting shader compiler process
