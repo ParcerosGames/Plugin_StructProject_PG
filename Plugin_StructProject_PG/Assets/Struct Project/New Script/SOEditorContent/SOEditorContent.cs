@@ -6,15 +6,17 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "SOEditorContent", menuName = "SOEditor")]
 public class SOEditorContent : ScriptableObject
 {
-    [SerializeField] internal List<ModeHierarchy> modeHierarchies;
-    [SerializeField] internal UnityEvent[] eventU;
+    public List<ModeHierarchy> modeHierarchies; 
+    public GameObject[] excludeObject;
+    public Gradient myGradient;
 
+    [System.Serializable]
+    public class ModeHierarchy
+    {
+        public string newNameInstance;
+        public Color newColor;
+        public GameObject instanceHierarchy;
+    }
 }
 
-[System.Serializable]
-public class ModeHierarchy
-{
-    [SerializeField] internal string nameEmpty;
-    [SerializeField] internal Color newColor;
-    public GameObject emptyInstance;
-}
+
