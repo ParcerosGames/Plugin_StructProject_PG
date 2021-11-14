@@ -1,14 +1,10 @@
 ﻿using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "SOEditorContent", menuName = "SOEditor")]
 public class SOEditorContent : ScriptableObject
 {
     public List<ModeHierarchy> modeHierarchies; 
-    public GameObject[] excludeObject;
-    public Gradient myGradient;
 
     [System.Serializable]
     public class ModeHierarchy
@@ -18,5 +14,7 @@ public class SOEditorContent : ScriptableObject
         public GameObject instanceHierarchy;
     }
 }
+
+
 
 

@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - sOEditorContent: {fileID: 11400000, guid: 86af7071ec1228349b98db1748651366, type: 2}
+  - sOEditorContent: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

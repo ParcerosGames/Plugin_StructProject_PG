@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 [InitializeOnLoad]
-public class EditorCustomHierarchy : MonoBehaviour
+public class EditorCustomHierarchy : Editor
 {
     static EditorCustomHierarchy()
     {
@@ -29,14 +29,14 @@ public class EditorCustomHierarchy : MonoBehaviour
                 new GradientAlphaKey[] { new GradientAlphaKey(alpha, .2f), new GradientAlphaKey(0, 1.0f) }
             );
             EditorGUI.DrawRect(selectionRect, Label.backgroundColor);
-            EditorGUI.DropShadowLabel(selectionRect, obj.name.Replace("-", "").ToString());
+            //EditorGUI.DropShadowLabel(selectionRect, obj.name.Replace("-", "").ToString());
 
-            Label.icon = (Texture2D)EditorGUILayout.ObjectField(Label.icon, typeof(Texture2D), true, GUILayout.Width(30));
+            //Label.icon = (Texture2D)EditorGUILayout.ObjectField(Label.icon, typeof(Texture2D), true, GUILayout.Width(30));
 
             //opt.icon = (Texture2D)EditorGUILayout.ObjectField(opt.icon, typeof(Texture2D), false, GUILayout.Width(30));
             //opt.iconLeft = EditorGUILayout.Toggle(opt.iconLeft, GUILayout.Width(20));
             //opt.iconOffs = EditorGUILayout.IntField(opt.iconOffs, GUILayout.Width(30));
-
+            EditorApplication.RepaintHierarchyWindow();
         }
     }
 }

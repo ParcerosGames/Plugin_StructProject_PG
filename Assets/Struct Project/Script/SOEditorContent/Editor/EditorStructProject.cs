@@ -1,10 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using TMPro;
-using UnityEditor;
-using UnityEditor.Experimental.TerrainAPI;
-using UnityEditor.Graphs;
+﻿using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
@@ -13,12 +7,9 @@ using UnityEngine.Video;
 [CustomEditor(typeof(SOEditorContent))]
 public class EditorStructProject : Editor
 {
-    public SOEditorContent sOEditorContent;
-    //public ModeHierarchy modeHierarchy;
+    public static SOEditorContent sOEditorContent;
 
     private SerializedProperty propertySOEditorContent;
-    private SerializedProperty propertySOEditorContentGradient;
-    private SerializedProperty propertySOEditorExcludeObject;
 
     //search object in hierarchy
     private GameObject[] objectsHierarchy;
@@ -35,9 +26,10 @@ public class EditorStructProject : Editor
     {
         skinTitle = Resources.Load<GUISkin>("GuiSkin/TitleSkin");
         skinInfo = Resources.Load<GUISkin>("GuiSkin/infoSkin");
+
+        sOEditorContent = Resources.Load<SOEditorContent>("SOEditor/SOEditorContent");
+
         propertySOEditorContent = serializedObject.FindProperty("modeHierarchies");
-        propertySOEditorContentGradient = serializedObject.FindProperty("myGradient");
-        propertySOEditorExcludeObject = serializedObject.FindProperty("excludeObject");
     }
 
     public override void OnInspectorGUI()
@@ -70,16 +62,6 @@ public class EditorStructProject : Editor
         serializedObject.ApplyModifiedProperties();
         GUILayout.EndHorizontal();
 
-        GUILayout.Space(5);
-        GUILayout.BeginHorizontal("Box");
-        EditorGUILayout.PropertyField(property: propertySOEditorExcludeObject, includeChildren: true);
-        GUILayout.EndHorizontal();
-
-        GUILayout.Space(5);
-        GUILayout.BeginHorizontal("Box");
-        EditorGUILayout.PropertyField(property: propertySOEditorContentGradient, includeChildren: true);
-        GUILayout.EndHorizontal();
-
         GUILayout.Space(15);
         GUILayout.BeginHorizontal("Box");
         ButtonApply();
@@ -89,16 +71,24 @@ public class EditorStructProject : Editor
     #region Settings Empty In Hierarchy
     internal void ButtonApply()
     {
-        //GUI.color = new Color(0, 0.6698113f, 0.09296767f);
         if (GUILayout.Button("Apply", skinTitle.GetStyle("Header1")))
         {
             if (!refEmpty)
             {
                 CreateObjectInHierarchy();
             }
-
         }
     }
+
+    internal void CreateObjectInHierarchy()
+    {
+        for (int i = 0; i < sOEditorContent.modeHierarchies.Count; i++)
+        {
+            refEmpty = Instantiate(sOEditorContent.modeHierarchies[i].instanceHierarchy);
+            refEmpty.name = sOEditorContent.modeHierarchies[i].newNameInstance;
+        }
+    }
+
     internal void VerifyObjectInHierarchy()
     {
         objectsHierarchy = FindObjectsOfType<GameObject>();
@@ -110,14 +100,6 @@ public class EditorStructProject : Editor
             {
                 AddcomponentToNewEmpty(refObjectHierarchyLocal.transform);
             }
-        }
-    }
-    internal void CreateObjectInHierarchy()
-    {
-        for (int i = 0; i < sOEditorContent.modeHierarchies.Count; i++)
-        {
-            refEmpty = Instantiate(sOEditorContent.modeHierarchies[i].instanceHierarchy);
-            refEmpty.name = sOEditorContent.modeHierarchies[i].newNameInstance;
         }
     }
     internal void AddcomponentToNewEmpty(Transform item)
@@ -179,7 +161,6 @@ public class EditorStructProject : Editor
             }
 
         }
-
     }
     #endregion
 }

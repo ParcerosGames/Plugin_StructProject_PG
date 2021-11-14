@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ec0e45cf76daa4591e93e556d884ae, type: 3}
+  m_Name: SOEditorContent
+  m_EditorClassIdentifier: 
+  modeHierarchies:
+  - newNameInstance: ENVIROMENT
+    newColor: {r: 0.9056604, g: 0, b: 0.45752788, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd, type: 3}
+  - newNameInstance: SETTINGS
+    newColor: {r: 0, g: 0.6415094, b: 0.12573896, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd, type: 3}
+  - newNameInstance: CM CAMERA
+    newColor: {r: 0, g: 0.54896283, b: 0.8018868, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd, type: 3}
+  - newNameInstance: EFFECTS
+    newColor: {r: 0.7830189, g: 0.16350491, b: 0, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd, type: 3}
+  - newNameInstance: SOUND
+    newColor: {r: 0.6235337, g: 0, b: 1, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd, type: 3}
+  - newNameInstance: UI
+    newColor: {r: 0.9433962, g: 0.7361874, b: 0, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd, type: 3}
+  - newNameInstance: SCRIPTING
+    newColor: {r: 0, g: 0.80259144, b: 0.8584906, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd, type: 3}
+  - newNameInstance: LIGHTING
+    newColor: {r: 0.66803324, g: 0, b: 0.7254902, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd, type: 3}
+  - newNameInstance: POST PROCESS
+    newColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    instanceHierarchy: {fileID: 6283186207723872715, guid: c5b7b2fe462fb3c4facfb28e9671bebd, type: 3}
