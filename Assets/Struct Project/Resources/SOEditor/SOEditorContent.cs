@@ -4,15 +4,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SOEditorContent", menuName = "SOEditor")]
 public class SOEditorContent : ScriptableObject
 {
-    public List<ModeHierarchy> modeHierarchies; 
+    public Color colorText;
+    public FontStyle styleText;
 
-    [System.Serializable]
-    public class ModeHierarchy
+    public string[] newNameInstance = new string[]
     {
-        public string newNameInstance;
-        public Color newColor;
-        public GameObject instanceHierarchy;
-    }
+        "ENVIROMENT","SETTINGS","CM CAMERA","EFFECTS","SOUND","UI","SCRIPTING","LIGHTING","POST PROCESS"
+    };
+
+    public Color[] newColor;
 }
 
 

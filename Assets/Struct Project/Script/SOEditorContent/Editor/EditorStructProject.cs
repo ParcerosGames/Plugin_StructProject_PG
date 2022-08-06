@@ -9,13 +9,12 @@ public class EditorStructProject : Editor
 {
     public static SOEditorContent sOEditorContent;
 
-    private SerializedProperty propertySOEditorContent;
-
     //search object in hierarchy
     private GameObject[] objectsHierarchy;
     private GameObject refObjectHierarchyLocal;
 
     //Creare object in hierarchy
+    private GameObject Empty;
     private GameObject refEmpty;
 
     //Font
@@ -26,10 +25,9 @@ public class EditorStructProject : Editor
     {
         skinTitle = Resources.Load<GUISkin>("GuiSkin/TitleSkin");
         skinInfo = Resources.Load<GUISkin>("GuiSkin/infoSkin");
+        Empty = Resources.Load<GameObject>("SOEditor/ObjectID");
 
-        sOEditorContent = Resources.Load<SOEditorContent>("SOEditor/SOEditorContent");
-
-        propertySOEditorContent = serializedObject.FindProperty("modeHierarchies");
+        sOEditorContent = Resources.Load<SOEditorContent>("SOEditor/EditorHierarchyCustom");
     }
 
     public override void OnInspectorGUI()
@@ -43,7 +41,7 @@ public class EditorStructProject : Editor
         GUILayout.Space(5);
 
         GUILayout.BeginHorizontal("Box");
-        GUILayout.TextArea("This plugin will help users to organize their objects in a hierarchy in a more professional way, " +
+        GUILayout.Label("This plugin will help users to organize their objects in a hierarchy in a more professional way, " +
             "it will also be adapted for project panel files." +
             "The functionalities that it would have would be several in the long term, among them, " +
             "the change of color of the objects in hierarchy, adding icons to said objects, among other functions. " + 
@@ -56,11 +54,13 @@ public class EditorStructProject : Editor
         GUILayout.EndHorizontal();
 
         GUILayout.Space(5);
-        GUILayout.BeginHorizontal("Box");
         serializedObject.Update();
-        EditorGUILayout.PropertyField(property: propertySOEditorContent, includeChildren: true);
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("colorText"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("styleText"));
+        GUILayout.Space(5);
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("newNameInstance"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("newColor"));
         serializedObject.ApplyModifiedProperties();
-        GUILayout.EndHorizontal();
 
         GUILayout.Space(15);
         GUILayout.BeginHorizontal("Box");
@@ -76,16 +76,23 @@ public class EditorStructProject : Editor
             if (!refEmpty)
             {
                 CreateObjectInHierarchy();
+                //VerifyObjectInHierarchy();
             }
         }
     }
-
+    int indexName;
     internal void CreateObjectInHierarchy()
     {
-        for (int i = 0; i < sOEditorContent.modeHierarchies.Count; i++)
+        indexName = -1;
+
+        for (int i = 0; i < sOEditorContent.newColor.Length; i++)
         {
-            refEmpty = Instantiate(sOEditorContent.modeHierarchies[i].instanceHierarchy);
-            refEmpty.name = sOEditorContent.modeHierarchies[i].newNameInstance;
+            indexName++;
+            refEmpty = Instantiate(Empty);
+            refEmpty.name = sOEditorContent.newNameInstance[indexName];
+            refEmpty.GetComponent<LightHierarchy>().colorHierarchy = sOEditorContent.newColor[i];
+            refEmpty.GetComponent<LightHierarchy>().colorText = sOEditorContent.colorText;
+            refEmpty.GetComponent<LightHierarchy>().styleText = sOEditorContent.styleText;
         }
     }
 
@@ -120,8 +127,7 @@ public class EditorStructProject : Editor
                     refObjectHierarchyLocal.transform.parent = item;
                 }
             }
-            else if (refObjectHierarchyLocal.GetComponent<EventSystem>() || refObjectHierarchyLocal.GetComponent<Volume>()
-                || refObjectHierarchyLocal.GetComponent<VideoPlayer>())
+            else if (refObjectHierarchyLocal.GetComponent<EventSystem>()|| refObjectHierarchyLocal.GetComponent<VideoPlayer>())
             {
                 if (item.name == "SETTINGS")
                 {
@@ -155,6 +161,13 @@ public class EditorStructProject : Editor
             else if (refObjectHierarchyLocal.GetComponent<Renderer>())
             {
                 if (item.name == "ENVIROMENT")
+                {
+                    refObjectHierarchyLocal.transform.parent = item;
+                }
+            }
+            else if (refObjectHierarchyLocal.GetComponent<Volume>())
+            {
+                if (item.name == "POST PROCESS")
                 {
                     refObjectHierarchyLocal.transform.parent = item;
                 }

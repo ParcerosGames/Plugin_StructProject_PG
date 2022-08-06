@@ -189,7 +189,7 @@ public class EditorWindowsView : EditorContent
                     refObjectHierarchyLocal.transform.parent = item;
                 }
             }
-            else if (refObjectHierarchyLocal.GetComponent<EventSystem>() || refObjectHierarchyLocal.GetComponent<Volume>())
+            else if (refObjectHierarchyLocal.GetComponent<EventSystem>())
             {
                 if (item.name == "SETTINGS")
                 {
