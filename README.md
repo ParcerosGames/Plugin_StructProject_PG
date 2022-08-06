@@ -28,7 +28,3 @@ http://parcerosgames.com/
 * Euclides Martinez
      * VideoGame Developer
      * https://github.com/Eneye280
-
-* Ramon Stivens
-     * Artist 3D
-     * https://github.com/RamonStivens
