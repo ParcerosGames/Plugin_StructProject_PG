@@ -9,10 +9,6 @@ public class EditorStructProject : Editor
 {
     public static SOEditorContent sOEditorContent;
 
-    //search object in hierarchy
-    private GameObject[] objectsHierarchy;
-    private GameObject refObjectHierarchyLocal;
-
     //Creare object in hierarchy
     private GameObject Empty;
     private GameObject refEmpty;
@@ -20,6 +16,11 @@ public class EditorStructProject : Editor
     //Font
     private GUISkin skinTitle;
     private GUISkin skinInfo;
+
+    protected int indexName;
+
+    private GameObject[] objectsHierarchy;
+    private GameObject refObjectHierarchyLocal;
 
     private void OnEnable()
     {
@@ -69,19 +70,19 @@ public class EditorStructProject : Editor
     }
 
     #region Settings Empty In Hierarchy
-    internal void ButtonApply()
+    protected void ButtonApply()
     {
         if (GUILayout.Button("Apply", skinTitle.GetStyle("Header1")))
         {
             if (!refEmpty)
             {
                 CreateObjectInHierarchy();
-                //VerifyObjectInHierarchy();
+                VerifyObjectInHierarchy();
             }
         }
     }
-    int indexName;
-    internal void CreateObjectInHierarchy()
+    
+    protected void CreateObjectInHierarchy()
     {
         indexName = -1;
 
@@ -96,7 +97,7 @@ public class EditorStructProject : Editor
         }
     }
 
-    internal void VerifyObjectInHierarchy()
+    protected void VerifyObjectInHierarchy()
     {
         objectsHierarchy = FindObjectsOfType<GameObject>();
         foreach (var refObjectHierarchy in objectsHierarchy)
@@ -109,7 +110,8 @@ public class EditorStructProject : Editor
             }
         }
     }
-    internal void AddcomponentToNewEmpty(Transform item)
+
+    protected void AddcomponentToNewEmpty(Transform item)
     {
         foreach (var refObjectHierarchyLocal in objectsHierarchy)
         {
@@ -127,7 +129,7 @@ public class EditorStructProject : Editor
                     refObjectHierarchyLocal.transform.parent = item;
                 }
             }
-            else if (refObjectHierarchyLocal.GetComponent<EventSystem>()|| refObjectHierarchyLocal.GetComponent<VideoPlayer>())
+            else if (refObjectHierarchyLocal.GetComponent<EventSystem>() || refObjectHierarchyLocal.GetComponent<VideoPlayer>())
             {
                 if (item.name == "SETTINGS")
                 {
@@ -175,5 +177,6 @@ public class EditorStructProject : Editor
 
         }
     }
+
     #endregion
 }

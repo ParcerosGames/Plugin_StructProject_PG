@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "SOEditorContent", menuName = "SOEditor")]
 public class SOEditorContent : ScriptableObject
